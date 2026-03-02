@@ -13,6 +13,11 @@ import javax.swing.*;
 
 public class VentanaDepart extends JFrame implements ActionListener  {
 	
+public static final String NOEXISTEDEPART = "DEPARTAMENTO NO EXISTE."; //* EJ2
+private static final String EXISTE_DEPART = "DEPARTAMENTO EXISTE."; //*EJ3
+private static final String DEPAR_ERROR = "DEPARTAMENTO ERR�NEO.";
+
+
 private static final long serialVersionUID = 1L;
 JTextField num=new JTextField(10);
 JTextField nombre=new JTextField(25);
@@ -35,6 +40,8 @@ JButton ver=new JButton("Ver por consola.");
 JButton fin=new JButton("CERRAR");
 Color c; //para poner colores
  // WHITE,LIGHTGRAY,GRAY,DARKGRAY,BLUE,BLACK,RED,MAGENTA,PINK,ORANGE,CYAN,GREEN,YELLOW
+
+
 
 public VentanaDepart(JFrame f )
 { 	
@@ -101,7 +108,7 @@ public void actionPerformed(ActionEvent e)
 	    	  dep=Integer.parseInt(num.getText());
 	    	  if (dep >0)
 	    	      if (consultar(dep))
-					 mensaje.setText("DEPARTAMENTO EXISTE.");   
+					 mensaje.setText(EXISTE_DEPART);   
 			      else
 					{ mensaje.setText("NUEVO DEPARTAMENTO.");	
 	    	          grabar(dep, nombre.getText(), loc.getText());
@@ -110,7 +117,7 @@ public void actionPerformed(ActionEvent e)
 	    	  else mensaje.setText("DEPARTAMENTO DEBE SER MAYOR QUE 0");	
 	    	  
 	       } catch(java.lang.NumberFormatException ex) //controlar el error del Integer.parseInt
-	         {mensaje.setText("DEPARTAMENTO ERR�NEO.");} 
+	         {mensaje.setText(DEPAR_ERROR);} 
 	       catch (IOException ex2) {
 	    	   mensaje.setText("ERRORRR EN EL FICHERO. Fichero no existe. (ALTA)");
 	    	   // lo creo
@@ -125,10 +132,10 @@ public void actionPerformed(ActionEvent e)
 	    	  dep=Integer.parseInt(num.getText());
 	    	  if (dep >0)
 	    	      if (consultar(dep))
-	    	       { mensaje.setText("DEPARTAMENTO EXISTE.");   
+	    	       { mensaje.setText(EXISTE_DEPART);   
 	    	         visualiza(dep);}
 			      else
-					{ mensaje.setText("DEPARTAMENTO NO EXISTE.");	
+					{ mensaje.setText(VentanaDepart.NOEXISTEDEPART);	
 					  nombre.setText(" "); loc.setText(" ");
 	    	         }
 	    	  else mensaje.setText("DEPARTAMENTO DEBE SER MAYOR QUE 0");	
@@ -146,7 +153,7 @@ public void actionPerformed(ActionEvent e)
 	    	  dep=Integer.parseInt(num.getText());
 	    	  if (dep >0)
 	    	      if (consultar(dep))
-	    	       { mensaje.setText("DEPARTAMENTO EXISTE.");   
+	    	       { mensaje.setText(EXISTE_DEPART);   
 	    	         visualiza(dep);
 	    	         confirm=JOptionPane.showConfirmDialog(this, "ESTAS SEGURO DE BORRAR...", "AVISO BORRADO.", 
 	    	        		     JOptionPane.OK_CANCEL_OPTION);	  
@@ -159,7 +166,7 @@ public void actionPerformed(ActionEvent e)
 	    	           }
 	    	       } 
 			      else
-					{ mensaje.setText("DEPARTAMENTO NO EXISTE.");	
+					{ mensaje.setText(VentanaDepart.NOEXISTEDEPART);	
 					  nombre.setText(" "); loc.setText(" ");
 	    	         }
 	    	  else mensaje.setText("DEPARTAMENTO DEBE SER MAYOR QUE 0");	
@@ -175,7 +182,7 @@ public void actionPerformed(ActionEvent e)
 	    	  dep=Integer.parseInt(num.getText());
 	    	  if (dep >0)
 	    	      if (consultar(dep))
-	    	       { mensaje.setText("DEPARTAMENTO EXISTE.");  
+	    	       { mensaje.setText(EXISTE_DEPART);  
 	    	         confirm=JOptionPane.showConfirmDialog(this, "ESTAS SEGURO DE MODIFICAR...", "AVISO MODIFICACI�N.", 
 	    	        		     JOptionPane.OK_CANCEL_OPTION);	  
 	    	           // si devuelve 0 es OK
@@ -186,7 +193,7 @@ public void actionPerformed(ActionEvent e)
 		 	           }
 	    	       } 
 			      else
-					{ mensaje.setText("DEPARTAMENTO NO EXISTE.");	
+					{ mensaje.setText(VentanaDepart.NOEXISTEDEPART);	
 					  nombre.setText(" "); loc.setText(" ");
 	    	         }
 	    	  else mensaje.setText("DEPARTAMENTO DEBE SER MAYOR QUE 0");	
